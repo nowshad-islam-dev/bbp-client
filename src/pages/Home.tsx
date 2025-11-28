@@ -1,23 +1,21 @@
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
-import Navbar from '@/components/Navbar';
+import Layout from '@/Layout';
 import Hero from '@/components/Hero';
 import NewsCard from '@/components/Cards/News';
 import EventCard from '@/components/Cards/Event';
-import Footer from '@/components/Footer';
+
 // mock card data
 import { news, events } from '@/mocks';
 
 const Home = () => {
     return (
-        <>
-            <Navbar />
+        <Layout>
             <Hero />
             <MDBContainer fluid className="mt-2 p-2">
                 <MDBRow className="g-4">
                     {/* NEWS SECTION */}
                     <MDBCol md="8">
                         <h4 className="text-black mb-3">Election News</h4>
-
                         <MDBRow className="g-3">
                             {news.map((n) => (
                                 <MDBCol sm="6" lg="4" key={n.id}>
@@ -65,8 +63,7 @@ const Home = () => {
                     </ul>
                 </div>
             </MDBContainer>
-            <Footer />
-        </>
+        </Layout>
     );
 };
 

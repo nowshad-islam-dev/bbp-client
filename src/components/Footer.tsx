@@ -5,7 +5,7 @@ export default function Footer() {
     return (
         <MDBContainer
             fluid
-            className="p-3 bg-primary d-sm-flex justify-content-between text-white"
+            className="p-3 bg-primary d-sm-flex justify-content-between text-white fixed-bottom"
         >
             <div className="mb-3 mb-sm-0">
                 <h6 className="fw-bold">Contact Us</h6>

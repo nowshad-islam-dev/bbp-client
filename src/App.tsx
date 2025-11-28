@@ -3,12 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import News from './pages/News';
 
 const App = () => {
     return (
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/news" element={<News />} />
                 {/* Protected Routes */}
                 {/* <Route element={<PrivateRoute />}>
                     <Route path="/product" element={<Product />} />

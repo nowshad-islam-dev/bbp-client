@@ -56,18 +56,22 @@ export default function Navbar() {
                         </MDBNavbarItem>
 
                         {/* Links */}
-                        {['Home', 'Candidates', 'News', 'Polls', 'About'].map(
-                            (item) => (
-                                <MDBNavbarItem key={item}>
-                                    <MDBNavbarLink
-                                        href="#"
-                                        className="fw-medium text-dark px-3 py-2 rounded hover-bg"
-                                    >
-                                        {item}
-                                    </MDBNavbarLink>
-                                </MDBNavbarItem>
-                            ),
-                        )}
+                        {[
+                            ['Home', '/'],
+                            ['Candidates', '/candidates'],
+                            ['News', '/news'],
+                            ['Polls', '/polls'],
+                            ['About', '/about'],
+                        ].map((item) => (
+                            <MDBNavbarItem key={item[0]}>
+                                <MDBNavbarLink
+                                    href={item[1]}
+                                    className="fw-medium text-dark px-3 py-2 rounded hover-bg"
+                                >
+                                    {item[0]}
+                                </MDBNavbarLink>
+                            </MDBNavbarItem>
+                        ))}
                     </MDBNavbarNav>
                 </MDBCollapse>
             </MDBContainer>
