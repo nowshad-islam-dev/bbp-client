@@ -11,8 +11,11 @@ import {
     MDBIcon,
 } from 'mdb-react-ui-kit';
 import { Link } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/useMobile';
 
 const Login = () => {
+    const mobile = useIsMobile();
+
     const [formValue, setFormValue] = useState({
         email: '',
         password: '',
@@ -26,6 +29,10 @@ const Login = () => {
         e.preventDefault();
         console.log(formValue);
     };
+
+    const inputContainerClass = `d-flex flex-row align-items-center mb-4 ${
+        mobile ? 'w-auto' : 'w-50'
+    } `;
     return (
         <MDBContainer fluid>
             <MDBCard
@@ -43,7 +50,7 @@ const Login = () => {
                                 Login With Your Credentials
                             </p>
 
-                            <div className="d-flex flex-row align-items-center mb-4">
+                            <div className={inputContainerClass}>
                                 <MDBIcon fas icon="envelope me-3" size="lg" />
                                 <MDBInput
                                     label="Enter your email"
@@ -55,7 +62,7 @@ const Login = () => {
                                 />
                             </div>
 
-                            <div className="d-flex flex-row align-items-center mb-4">
+                            <div className={inputContainerClass}>
                                 <MDBIcon fas icon="lock me-3" size="lg" />
                                 <MDBInput
                                     label="Type your password"

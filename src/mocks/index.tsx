@@ -33,3 +33,27 @@ export const news = [
         img: 'https://i.guim.co.uk/img/media/f14e8ac89a152fb995ec1f3513bcfbd6d1430699/0_134_5472_3283/master/5472.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=5fc9988d8b28b26cd9310300a5ac3dda',
     },
 ];
+
+export const candidates = [
+    {
+        id: 1,
+        name: 'Anderson Silva',
+        text: 'Some example text for this person',
+        img: 'https://mdbootstrap.com/img/new/standard/nature/184.webp',
+        features: ['feature 1', 'feature 2', 'feature 3'],
+    },
+    {
+        id: 2,
+        name: 'Colby Chicken',
+        text: 'Some example text for this person',
+        img: 'https://mdbootstrap.com/img/new/standard/nature/184.webp',
+        features: ['feature 1', 'feature 2', 'feature 3'],
+    },
+    {
+        id: 3,
+        name: 'Test Chicken',
+        text: 'Some example text for this person',
+        img: '#',
+        features: [],
+    },
+];

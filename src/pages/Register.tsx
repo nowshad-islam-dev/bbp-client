@@ -12,7 +12,11 @@ import {
 } from 'mdb-react-ui-kit';
 import { Link } from 'react-router-dom';
 
+import { useIsMobile } from '@/hooks/useMobile';
+
 const Register = () => {
+    const mobile = useIsMobile();
+
     const [formValue, setFormValue] = useState({
         firstName: '',
         lastName: '',
@@ -35,6 +39,10 @@ const Register = () => {
         e.preventDefault();
         console.log(formValue);
     };
+
+    const inputContainerClass = `d-flex flex-row align-items-center mb-4 ${
+        mobile ? 'w-auto' : 'w-50'
+    } `;
     return (
         <MDBContainer fluid>
             <MDBCard
@@ -51,33 +59,31 @@ const Register = () => {
                                 Register Your Account
                             </p>
 
-                            <div className="d-flex flex-row align-items-center mb-4 ">
+                            <div className={inputContainerClass}>
                                 <MDBIcon fas icon="user me-3" size="lg" />
                                 <MDBInput
                                     label="First name*"
                                     name="firstName"
                                     type="text"
-                                    className="w-100"
                                     required
                                     value={formValue.firstName}
                                     onChange={handleChange}
                                 />
                             </div>
 
-                            <div className="d-flex flex-row align-items-center mb-4 ">
+                            <div className={inputContainerClass}>
                                 <MDBIcon fas icon="user me-3" size="lg" />
                                 <MDBInput
                                     label="Last name*"
                                     name="lastName"
                                     type="text"
-                                    className="w-100"
                                     required
                                     value={formValue.lastName}
                                     onChange={handleChange}
                                 />
                             </div>
 
-                            <div className="d-flex flex-row align-items-center mb-4">
+                            <div className={inputContainerClass}>
                                 <MDBIcon fas icon="envelope me-3" size="lg" />
                                 <MDBInput
                                     label="Email*"
@@ -89,7 +95,7 @@ const Register = () => {
                                 />
                             </div>
 
-                            <div className="d-flex flex-row align-items-center mb-4">
+                            <div className={inputContainerClass}>
                                 <MDBIcon fas icon="phone me-3" size="lg" />
                                 <MDBInput
                                     label="Phone number"
@@ -101,7 +107,7 @@ const Register = () => {
                                 />
                             </div>
 
-                            <div className="d-flex flex-row align-items-center mb-4">
+                            <div className={inputContainerClass}>
                                 <MDBIcon fas icon="lock me-3" size="lg" />
                                 <MDBInput
                                     label="Type a strong password"
@@ -113,7 +119,7 @@ const Register = () => {
                                 />
                             </div>
 
-                            <div className="d-flex flex-row align-items-center mb-4">
+                            <div className={inputContainerClass}>
                                 <MDBIcon fas icon="key me-3" size="lg" />
                                 <MDBInput
                                     label="Repeat your password"
