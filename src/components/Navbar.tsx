@@ -9,11 +9,20 @@ import {
     MDBNavbarLink,
     MDBCollapse,
 } from 'mdb-react-ui-kit';
-import { UserCircle2 } from 'lucide-react';
+import { UserCircle2, LogOut } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '@/hooks/redux';
+import { logout } from '@/store/features/authSlice';
 
 export default function Navbar() {
+    const dispatch = useAppDispatch();
+    const isLoggedIn = useAppSelector((state) => state.auth.isAuthenticated);
+
     const [open, setOpen] = useState(false);
+
+    const handleLogout = () => {
+        dispatch(logout());
+    };
 
     return (
         <MDBNavbar
@@ -47,12 +56,22 @@ export default function Navbar() {
                     <MDBNavbarNav className="align-items-md-center gap-md-2">
                         {/* Login Button */}
                         <MDBNavbarItem>
-                            <button className="btn d-flex align-items-center gap-1 px-3 py-2 rounded-pill border-0 bg-primary  fw-medium text-white">
-                                <UserCircle2 size={18} />
-                                <Link className="text-white" to="/login">
-                                    Login
-                                </Link>
-                            </button>
+                            {!isLoggedIn ? (
+                                <button className="btn d-flex align-items-center gap-1 px-3 py-2 rounded-pill border-0 bg-primary  fw-medium text-white">
+                                    <UserCircle2 size={18} />
+                                    <Link className="text-white" to="/login">
+                                        Login
+                                    </Link>
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={handleLogout}
+                                    className="btn d-flex align-items-center gap-1 px-3 py-2 rounded-pill border-0 bg-warning fw-medium text-white"
+                                >
+                                    <LogOut size={18} />
+                                    Logout
+                                </button>
+                            )}
                         </MDBNavbarItem>
 
                         {/* Links */}
