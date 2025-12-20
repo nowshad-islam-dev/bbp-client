@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { useAppSelector } from './hooks/redux';
+import { useAuthBootstrap } from './hooks/useAuthBootstrap';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -9,6 +10,12 @@ import About from './pages/About';
 import NotFound from './pages/NotFound';
 
 const App = () => {
+    useAuthBootstrap();
+    const { authChecked } = useAppSelector((state) => state.auth);
+    if (!authChecked) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <Router>
             <Routes>
