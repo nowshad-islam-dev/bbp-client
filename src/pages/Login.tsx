@@ -10,11 +10,17 @@ import {
     MDBInput,
     MDBIcon,
 } from 'mdb-react-ui-kit';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '@/hooks/redux';
 import { useIsMobile } from '@/hooks/useMobile';
+import { useLoginMutation } from '@/store/api/apiSlice';
+import { setCredentials } from '@/store/features/authSlice';
 
 const Login = () => {
+    const [login, { isLoading }] = useLoginMutation();
+    const dispatch = useAppDispatch();
     const mobile = useIsMobile();
+    const navigate = useNavigate();
 
     const [formValue, setFormValue] = useState({
         email: '',
@@ -25,14 +31,30 @@ const Login = () => {
         setFormValue({ ...formValue, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        console.log(formValue);
+        try {
+            const credentials = {
+                email: formValue.email,
+                password: formValue.password,
+            };
+
+            const result = await login(credentials).unwrap();
+            setFormValue({ email: '', password: '' });
+
+            if (result.status === 'success') {
+                dispatch(setCredentials(result));
+                void navigate('/');
+            }
+        } catch (err) {
+            console.error('Login failed: ', err);
+        }
     };
 
     const inputContainerClass = `d-flex flex-row align-items-center mb-4 ${
         mobile ? 'w-auto' : 'w-50'
     } `;
+
     return (
         <MDBContainer fluid>
             <MDBCard
@@ -76,9 +98,10 @@ const Login = () => {
 
                             <MDBBtn
                                 type="submit"
-                                onClick={handleSubmit}
+                                onClick={(e) => void handleSubmit(e)}
                                 className="mb-4"
                                 size="lg"
+                                disabled={isLoading}
                             >
                                 Login
                             </MDBBtn>
