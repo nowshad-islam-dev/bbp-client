@@ -8,12 +8,13 @@ import News from './pages/News';
 import Candidates from './pages/Candidates';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
+import FullPageLoader from './components/Loader';
 
 const App = () => {
     useAuthBootstrap();
     const { authChecked } = useAppSelector((state) => state.auth);
     if (!authChecked) {
-        return <div>Loading...</div>;
+        return <FullPageLoader show={true} />;
     }
 
     return (
