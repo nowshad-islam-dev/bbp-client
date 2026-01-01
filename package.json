@@ -12,18 +12,25 @@
         "prepare": "husky"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^7.1.0",
+        "@hookform/resolvers": "^5.2.2",
         "@reduxjs/toolkit": "^2.10.1",
         "axios": "^1.13.2",
-        "react": "^19.2.0",
-        "react-bootstrap": "^2.10.10",
-        "react-dom": "^19.2.0",
-        "react-router-dom": "^7.9.6"
+        "lucide-react": "^0.554.0",
+        "mdb-react-ui-kit": "^9.0.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-hook-form": "^7.69.0",
+        "react-hot-toast": "^2.6.0",
+        "react-redux": "^9.2.0",
+        "react-router-dom": "^7.9.6",
+        "zod": "^4.2.1"
     },
     "devDependencies": {
         "@eslint/js": "^9.39.1",
         "@types/node": "^24.10.1",
-        "@types/react": "^19.2.5",
-        "@types/react-dom": "^19.2.3",
+        "@types/react": "^18.3.27",
+        "@types/react-dom": "^18.3.7",
         "@vitejs/plugin-react": "^5.1.1",
         "eslint": "^9.39.1",
         "eslint-plugin-react-hooks": "^7.0.1",
