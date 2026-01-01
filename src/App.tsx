@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import { useAppSelector } from './hooks/redux';
 import { useAuthBootstrap } from './hooks/useAuthBootstrap';
 import Home from './pages/Home';
@@ -35,6 +36,7 @@ const App = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
+            <Toaster />
         </Router>
     );
 };
