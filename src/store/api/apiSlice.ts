@@ -1,6 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { RootState } from '../store';
-import type { AuthRequest, AuthResponse } from '@/types/auth';
+import type {
+    AuthRequest,
+    AuthResponse,
+    RegisterRequest,
+    RegisterResponse,
+} from '@/types/auth';
 
 export const apiSlice = createApi({
     reducerPath: 'api',
@@ -26,6 +31,14 @@ export const apiSlice = createApi({
             }),
         }),
 
+        register: builder.mutation<RegisterResponse, RegisterRequest>({
+            query: (info) => ({
+                url: '/auth/register',
+                method: 'POST',
+                body: info,
+            }),
+        }),
+
         logout: builder.mutation<void, void>({
             query: () => ({
                 url: '/auth/logout',
@@ -43,5 +56,9 @@ export const apiSlice = createApi({
     }),
 });
 
-export const { useLoginMutation, useLogoutMutation, useRefreshTokenMutation } =
-    apiSlice;
+export const {
+    useLoginMutation,
+    useRegisterMutation,
+    useLogoutMutation,
+    useRefreshTokenMutation,
+} = apiSlice;
