@@ -6,6 +6,7 @@ import type {
     RegisterRequest,
     RegisterResponse,
 } from '@/types/auth';
+import type { NewsResponse, SingleNewsResponse } from '@/types/news';
 
 export const apiSlice = createApi({
     reducerPath: 'api',
@@ -50,8 +51,15 @@ export const apiSlice = createApi({
             query: () => ({
                 url: '/auth/refresh-token',
                 method: 'POST',
-                credentials: 'include', // Make sure cookies are sent
             }),
+        }),
+
+        getNews: builder.query<NewsResponse, void>({
+            query: () => '/news',
+        }),
+
+        getNewsById: builder.query<SingleNewsResponse, string>({
+            query: (newsId) => `/news/${newsId}`,
         }),
     }),
 });
@@ -61,4 +69,6 @@ export const {
     useRegisterMutation,
     useLogoutMutation,
     useRefreshTokenMutation,
+    useGetNewsQuery,
+    useGetNewsByIdQuery,
 } = apiSlice;

@@ -9,6 +9,7 @@ import News from './pages/News';
 import Candidates from './pages/Candidates';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
+import SingleNews from './pages/SingleNews';
 import FullPageLoader from './components/Loader';
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/news" element={<News />} />
+                <Route path="/news/:id" element={<SingleNews />} />
                 <Route path="/candidates" element={<Candidates />} />
                 <Route path="/about" element={<About />} />
                 {/* Protected Routes */}

@@ -5,11 +5,37 @@ import {
     MDBInputGroup,
     MDBBtn,
 } from 'mdb-react-ui-kit';
+import { useNavigate } from 'react-router-dom';
+import { useGetNewsQuery } from '@/store/api/apiSlice';
 import Layout from '@/Layout';
+import FullPageLoader from '@/components/Loader';
 import NewsCard from '@/components/Cards/News';
-import { news } from '@/mocks';
 
 const News = () => {
+    const navigate = useNavigate();
+    const { data, isLoading, isError } = useGetNewsQuery();
+
+    const news = data?.data;
+
+    if (isLoading) {
+        return <FullPageLoader />;
+    }
+
+    if (isError || !news) {
+        return (
+            <Layout>
+                <div
+                    className="d-flex justify-content-center align-items-center"
+                    style={{ minHeight: '99vh' }}
+                >
+                    <p className="ms-3 text-danger fw-bold display-3">
+                        Failed to load news. Please try again later.
+                    </p>
+                </div>
+            </Layout>
+        );
+    }
+
     return (
         <Layout>
             <div style={{ minHeight: '99vh' }}>
@@ -33,7 +59,12 @@ const News = () => {
                 <MDBContainer fluid className="mt-2 p-2">
                     <MDBRow className="g-3">
                         {news.map((n) => (
-                            <MDBCol sm="6" lg="4" key={n.id}>
+                            <MDBCol
+                                sm="6"
+                                lg="4"
+                                key={n.id}
+                                onClick={() => navigate(`/news/${n.id}`)}
+                            >
                                 <NewsCard
                                     title={n.title}
                                     text={n.text}
